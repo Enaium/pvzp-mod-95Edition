@@ -12,9 +12,9 @@ by change, as rules the engine runs.
   instantiate it through its no-argument constructor) → `Edition95Rules.apply()`.
 - **Rules**: `src/main/kotlin/cn/enaium/fabricpvz/mod95/Edition95Rules.kt` (a Kotlin `object`), one rule per
   thing the remix changes.
-- **API**: `cn.enaium.fabricpvz:fabric-api:1.2.1`, declared by hand in `build.gradle.kts` - resolved
-  transitively at compile time (a compiler reads jar files, not jars inside a jar) and as the aggregate jar
-  alone at runtime.
+- **API**: `cn.enaium.fabricpvz:fabric-api:1.2.2`, declared in `build.gradle.kts` as `compileOnly` +
+  `include`: resolved transitively at compile time (a compiler reads jar files, not jars inside a jar) and
+  carried inside this mod's jar for the run and for an installation.
 - **End-to-end test**: `src/test/java/.../Edition95EndToEndTest.java` - the real Fabric Loader, the real
   game and a real retail `main.pak`, observing the rules on a real board through the game's own code paths.
 
@@ -59,15 +59,15 @@ art, the levels and the text. Without the game this jar does nothing.
 
 ## Prerequisites
 
-This mod runs on [PvZ-Portable](https://github.com/FabricPvZ/pvz-portable) and needs two more mods next to it:
+This mod runs on [PvZ-Portable](https://github.com/FabricPvZ/pvz-portable) and needs one more mod next to it:
 
 - **PvZ-Portable** - the engine (the game itself). The repository: <https://github.com/FabricPvZ/pvz-portable>.
 - **fabric-language-kotlin** - this mod is written in Kotlin and carries no Kotlin runtime of its own.
   Download: [Modrinth](https://modrinth.com/mod/fabric-language-kotlin) ·
   [CurseForge](https://www.curseforge.com/minecraft/mc-mods/fabric-language-kotlin) ·
   [Fabric's maven](https://maven.fabricmc.net/net/fabricmc/fabric-language-kotlin/).
-- **fabric-api** (this workspace's API) - the seams the rules are registered with.
-  Download: the [GitHub releases](https://github.com/FabricPvZ/fabric-api/releases).
+
+The workspace's API (the seams the rules are registered with) is carried **inside this mod's jar**.
 
 ## License
 
